@@ -1,0 +1,74 @@
+.currentEmployeeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .top-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 1rem;
+  }
+  
+  .entries-select, .search-box {
+    display: flex;
+    align-items: center;
+  }
+  
+  .entries-select select, .search-box input {
+    margin-left: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f4f4f4;
+    cursor: pointer;
+  }
+  
+  table th:hover {
+    background-color: #ddd;
+  }
+  
+  /* Pagination Styling */
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 1rem;
+  }
+  
+  .page-nav button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: '#0056b3';
+    color: '#ffffff'
+  }
+  
+  .page-nav button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }

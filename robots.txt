@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /private/
+Disallow: /admin/
+Disallow: /settings/
+Allow: /
+
+# Sitemap for better indexing
+Sitemap: http://localhost:5174/
+
