@@ -8,9 +8,9 @@ const states = [
   "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
 ];
 
-const StateDropdown = ({ selectedState, onStateChange }) => {
+const StateDropdown = ({ selectedState, onStateChange, id }) => {
   return (
-    <select value={selectedState} onChange={(e) => onStateChange(e.target.value)}>
+    <select id={id} value={selectedState} onChange={(e) => onStateChange(e.target.value)}>
       <option value="">Select a state</option>
       {states.map((state) => (
         <option key={state} value={state}>{state}</option>

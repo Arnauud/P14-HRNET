@@ -1,7 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const loadEmployeesFromStorage = () => {
+  const storedEmployees = localStorage.getItem('employees');
+  return storedEmployees ? JSON.parse(storedEmployees) : [];
+};
+
 const initialState = {
-  employees: [],
+  employees: loadEmployeesFromStorage(),
 };
 
 const employeeManagementSlice = createSlice({
@@ -11,17 +16,12 @@ const employeeManagementSlice = createSlice({
     setEmployees: (state, action) => {
       console.log('🔄 Redux: Setting employees list:', action.payload);
       state.employees = action.payload;
+      localStorage.setItem('employees', JSON.stringify(state.employees)); // ✅ Save to localStorage
     },
     addEmployee: (state, action) => {
       console.log('🚀 Redux: Adding employee:', action.payload);
-
-      // Debugging: Log current state before mutation
-      console.log('📌 Before state update:', JSON.parse(JSON.stringify(state.employees)));
-
-      state.employees.push(action.payload); // ✅ Correct: Direct mutation
-
-      // Debugging: Log state after mutation
-      console.log('📢 Updated employees list in Redux:', JSON.parse(JSON.stringify(state.employees)));
+      state.employees.push(action.payload);
+      localStorage.setItem('employees', JSON.stringify(state.employees)); // ✅ Save to localStorage
     },
   },
 });

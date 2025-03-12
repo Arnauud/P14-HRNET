@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const DatePicker = ({ selectedDate, onDateChange }) => {
+const DatePicker = ({ selectedDate, onDateChange, id }) => {
   const [date, setDate] = useState(selectedDate || '');
 
   const handleChange = (event) => {
@@ -10,9 +10,10 @@ const DatePicker = ({ selectedDate, onDateChange }) => {
 
   return (
     <input 
-      type="date" 
+      type="date"
+      id={id} 
       value={date} 
-      onChange={handleChange} 
+      onChange={handleChange}
     />
   );
 };
