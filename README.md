@@ -8,7 +8,7 @@ The exercise was to convert a jQuery library to React
 - #### Date selection
 <img width="497" alt="87249082-1305b380-c42b-11ea-85e1-bb38e0700429" src="https://github.com/user-attachments/assets/1979e888-b7d3-4f45-99f1-eb56fff426a7" />
 
-- #### Modal window
+- #### Modal window (selected)
 <img width="621" alt="87249485-61b44d00-c42d-11ea-9372-00d13e6b6b12" src="https://github.com/user-attachments/assets/e37b00be-aa68-4377-8922-05617364011f" />
 
 - #### Dropdown Menu
