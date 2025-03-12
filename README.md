@@ -19,6 +19,10 @@ The exercise was to convert a jQuery library to React
 
 
 ## Installation
+
+Node version : v18.16.1
+IDE : Visual Studio Code
+
 Clone repo
 
 `git clone https://github.com/Arnauud/P14-HRNET`
@@ -30,3 +34,5 @@ Install dependencies
 Launch project
 
 `npm start`
+
+
