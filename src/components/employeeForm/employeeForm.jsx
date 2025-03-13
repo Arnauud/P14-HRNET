@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setField, resetForm } from '../../features/employees/employeeSlice';
-import EmployeeModal from '../EmployeeModal/EmployeeModal';
+import EmployeeModal from 'employee-modal';
 import { addEmployee } from '../../features/employees/employeeManagementSlice';
 import DatePicker from '../../utils/datePicker/DatePicker';
 import StateDropdown from '../../utils/StateDropdown/StateDropdown';
@@ -109,7 +109,7 @@ const EmployeeForm = () => {
         <button type="submit">Save</button>
       </form>
       {/* Modal inside EmployeeForm */}
-      <EmployeeModal isOpen={showModal} onClose={() => setShowModal(false)} />
+      <EmployeeModal isOpen={showModal} onClose={() => setShowModal(false)} message='Employee Created! 🎉'/>
     </div>
   );
 };
