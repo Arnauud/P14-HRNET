@@ -1,39 +1,22 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { EmployeeTable } from '../../components/employeeTable/employeeTable';
 import SearchAndFilter from '../../utils/SearchandFilter/SearchandFilter';
 import Pagination from '../../components/Pagination/Pagination';
 import '../currentEmployeeList/currentEmployee.css';
-import { setEmployees } from '../../features/employees/employeeManagementSlice';
-import { dummyEmployees } from '../../assets/dummyEmployees';
 import { sortEmployees, filterEmployees, handleSort } from '../../utils/SortingUtils/sortingUtils';
 
 const CurrentEmployeeList = () => {
     const employeesFromRedux = useSelector((state) => state.employees?.employees || []);
-    const dispatch = useDispatch();
-    
-    const [employees, setEmployees] = useState([]);
+
     const [entriesPerPage, setEntriesPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortConfig, setSortConfig] = useState({ key: '', direction: 'ascending' });
 
-    useEffect(() => {
-        if (employeesFromRedux.length === 0) {
-            const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-            if (storedEmployees.length > 0) {
-                dispatch(setEmployees(storedEmployees));
-            } else {
-                dispatch(setEmployees(dummyEmployees));
-            }
-        } else {
-            setEmployees(employeesFromRedux);
-        }
-    }, [dispatch, employeesFromRedux]);
-
     // ✅ Filtering employees
-    const filteredEmployees = useMemo(() => filterEmployees(employees, searchTerm), [employees, searchTerm]);
+    const filteredEmployees = useMemo(() => filterEmployees(employeesFromRedux, searchTerm), [employeesFromRedux, searchTerm]);
 
     // ✅ Sorting employees
     const sortedEmployees = useMemo(() => sortEmployees(filteredEmployees, sortConfig.key, sortConfig.direction), [filteredEmployees, sortConfig]);
@@ -56,7 +39,7 @@ const CurrentEmployeeList = () => {
         <div>
           <EmployeeTable 
             employees={paginatedEmployees} 
-            handleSort={(key) => handleSort(key, sortConfig, setSortConfig, employees, setEmployees)}
+            handleSort={(key) => handleSort(key, sortConfig, setSortConfig, employeesFromRedux, dispatch)}
             sortConfig={sortConfig} 
           />
         </div>

@@ -1,12 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const loadEmployeesFromStorage = () => {
-  const storedEmployees = localStorage.getItem('employees');
-  return storedEmployees ? JSON.parse(storedEmployees) : [];
-};
-
 const initialState = {
-  employees: loadEmployeesFromStorage(),
+  employees: [], 
 };
 
 const employeeManagementSlice = createSlice({
@@ -15,13 +10,11 @@ const employeeManagementSlice = createSlice({
   reducers: {
     setEmployees: (state, action) => {
       console.log('🔄 Redux: Setting employees list:', action.payload);
-      state.employees = action.payload;
-      localStorage.setItem('employees', JSON.stringify(state.employees)); // ✅ Save to localStorage
+      state.employees = action.payload; 
     },
     addEmployee: (state, action) => {
       console.log('🚀 Redux: Adding employee:', action.payload);
-      state.employees.push(action.payload);
-      localStorage.setItem('employees', JSON.stringify(state.employees)); // ✅ Save to localStorage
+      state.employees.push(action.payload); 
     },
   },
 });
