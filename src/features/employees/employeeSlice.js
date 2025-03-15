@@ -21,7 +21,7 @@ const employeeSlice = createSlice({
     setField: (state, action) => {
       state[action.payload.field] = action.payload.value;
     },
-    resetForm: (state) => {
+    resetForm: () => {
       return { ...initialState }; // ✅ Fully reset state instead of mutating it
     },
   },
