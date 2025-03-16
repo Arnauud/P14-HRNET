@@ -15,12 +15,12 @@ const persistedEmployeeReducer = persistReducer(persistConfig, employeeReducer);
 export const store = configureStore({
   reducer: {
     employees: persistedEmployeeReducer,
-    employeeForm: employeeFormReducer, // ❌ Do NOT persist the form
+    employeeForm: employeeFormReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER], // ✅ Ignore redux-persist actions
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER], 
       },
     }),
 });

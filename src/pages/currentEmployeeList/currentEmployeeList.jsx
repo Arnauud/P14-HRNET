@@ -5,7 +5,7 @@ import { EmployeeTable } from '../../components/employeeTable/employeeTable';
 import SearchAndFilter from '../../utils/SearchandFilter/SearchandFilter';
 import Pagination from '../../components/Pagination/Pagination';
 import '../currentEmployeeList/currentEmployee.css';
-import { sortEmployees, filterEmployees, handleSort } from '../../utils/SortingUtils/sortingUtils';
+import { sortEmployees, filterEmployees } from '../../utils/SortingUtils/sortingUtils';
 
 const CurrentEmployeeList = () => {
     const employeesFromRedux = useSelector((state) => state.employees?.employees || []);
@@ -23,9 +23,28 @@ const CurrentEmployeeList = () => {
 
     // ✅ Paginate employees
     const paginatedEmployees = useMemo(() => {
-        const start = (currentPage - 1) * entriesPerPage;
-        return sortedEmployees.slice(start, start + entriesPerPage);
-    }, [sortedEmployees, currentPage, entriesPerPage]);
+      const totalPages = Math.ceil(sortedEmployees.length / entriesPerPage);
+      
+      // Ensure currentPage is valid (reset to 1 if filtered results are fewer)
+      if (currentPage > totalPages) {
+          setCurrentPage(1);
+      }
+
+      const start = (currentPage - 1) * entriesPerPage;
+      return sortedEmployees.slice(start, start + entriesPerPage);
+  }, [sortedEmployees, currentPage, entriesPerPage]);
+
+
+  const handleSort = (key) => {
+    let direction = 'ascending';
+
+    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+        direction = 'descending';
+    }
+
+    setSortConfig({ key, direction });
+};
+
 
     return (
       <div className="currentEmployeeContainer">
@@ -39,7 +58,7 @@ const CurrentEmployeeList = () => {
         <div>
           <EmployeeTable 
             employees={paginatedEmployees} 
-            handleSort={(key) => handleSort(key, sortConfig, setSortConfig, employeesFromRedux, dispatch)}
+            handleSort={handleSort}
             sortConfig={sortConfig} 
           />
         </div>

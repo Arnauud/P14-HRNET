@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EmployeeForm from '../../components/employeeForm/employeeForm.jsx'; // ✅ Direct Import
+import EmployeeForm from '../../components/employeeForm/employeeForm.jsx'; // 
 import './employeeCreation.css';
 
 const CreateEmployee = () => {
